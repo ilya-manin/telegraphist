@@ -2,4 +2,4 @@ language: go
 
 go: "1.12"
 
-script: go test -v ./...
+script: make test
