@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestClient_urlFor(t *testing.T) {
+func TestClientUrlFor(t *testing.T) {
 	type fields struct {
 		baseURL    string
 		botToken   string
