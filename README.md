@@ -1,5 +1,5 @@
 # Telegraphist
-[![Build Status](https://travis-ci.org/xamut/telegraphist.svg?branch=master)](https://travis-ci.org/xamut/telegraphist)
+[![CI status](https://github.com/xamut/telegraphist/workflows/CI/badge.svg)](https://github.com/xamut/telegraphist/actions)
 
 Bindings for Telegram Bot API on Go
 
