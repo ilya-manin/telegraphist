@@ -8,6 +8,7 @@ import (
 	"mime/multipart"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 const (
@@ -43,7 +44,7 @@ func buildRequestBody(params interface{}, filesToUpload *files) (io.Reader, stri
 		json.Unmarshal(jsonBlob, &res)
 
 		for k, v := range res {
-			form.WriteField(k, string(v))
+			form.WriteField(k, strings.Trim(string(v), "\""))
 		}
 
 		for name, file := range *filesToUpload {
