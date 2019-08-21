@@ -2,8 +2,10 @@ package telegram
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -30,7 +32,8 @@ func TestHandleFileToUpload(t *testing.T) {
 
 	t.Run("with a local file", func(t *testing.T) {
 		tempFile, _ := ioutil.TempFile("", "file_to_upload")
-		defer os.Remove(tempFile.Name())
+		filePath := tempFile.Name()
+		defer os.Remove(filePath)
 
 		var file interface{} = tempFile
 		list := make(files)
@@ -43,6 +46,11 @@ func TestHandleFileToUpload(t *testing.T) {
 
 		if len(list) == 0 {
 			t.Errorf("should add a file to list")
+		}
+
+		fileName := filepath.Base(filePath)
+		if file != fmt.Sprintf("attach://%s", fileName) {
+			t.Errorf("should replace the file with filename, \"%s\" != \"%s\"", file, fileName)
 		}
 	})
 
@@ -58,6 +66,10 @@ func TestHandleFileToUpload(t *testing.T) {
 
 		if len(list) != 0 {
 			t.Errorf("should not add a file to list")
+		}
+
+		if file != "foo_bar_baz" {
+			t.Errorf("should not replace the file reference")
 		}
 	})
 
