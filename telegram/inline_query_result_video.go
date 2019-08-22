@@ -12,9 +12,9 @@ type InlineQueryResultVideo struct {
 	Title               string                `json:"title"`                           // Title for the result
 	Caption             string                `json:"caption,omitempty"`               // Optional. Caption of the video to be sent, 0-1024 characters
 	ParseMode           string                `json:"parse_mode,omitempty"`            // Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
-	VideoWidth          int64                 `json:"video_width,omitempty"`           // Optional. Video width
-	VideoHeight         int64                 `json:"video_height,omitempty"`          // Optional. Video height
-	VideoDuration       int64                 `json:"video_duration,omitempty"`        // Optional. Video duration in seconds
+	VideoWidth          int                   `json:"video_width,omitempty"`           // Optional. Video width
+	VideoHeight         int                   `json:"video_height,omitempty"`          // Optional. Video height
+	VideoDuration       int                   `json:"video_duration,omitempty"`        // Optional. Video duration in seconds
 	Description         string                `json:"description,omitempty"`           // Optional. Short description of the result
 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`          // Optional. Inline keyboard attached to the message
 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"` // Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).

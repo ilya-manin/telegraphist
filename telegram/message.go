@@ -4,18 +4,18 @@ package telegram
 Message represents a message.
 */
 type Message struct {
-	MessageID             int64                 `json:"message_id"`                        // Unique message identifier inside this chat
+	MessageID             int                   `json:"message_id"`                        // Unique message identifier inside this chat
 	From                  *User                 `json:"from"`                              // Optional. Sender, empty for messages sent to channels
-	Date                  int64                 `json:"date"`                              // Date the message was sent in Unix time
+	Date                  int                   `json:"date"`                              // Date the message was sent in Unix time
 	Chat                  *Chat                 `json:"chat"`                              // Conversation the message belongs to
 	ForwardFrom           *User                 `json:"forward_from,omitempty"`            // Optional. For forwarded messages, sender of the original message
 	ForwardFromChat       *Chat                 `json:"forward_from_chat,omitempty"`       // Optional. For messages forwarded from channels, information about the original channel
-	ForwardFromMessageID  int64                 `json:"forward_from_message_id,omitempty"` // Optional. For messages forwarded from channels, identifier of the original message in the channel
+	ForwardFromMessageID  int                   `json:"forward_from_message_id,omitempty"` // Optional. For messages forwarded from channels, identifier of the original message in the channel
 	ForwardSignature      string                `json:"forward_signature,omitempty"`       // Optional. For messages forwarded from channels, signature of the post author if present
 	ForwardSenderName     string                `json:"forward_sender_name,omitempty"`     // Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages
-	ForwardDate           int64                 `json:"forward_date,omitempty"`            // Optional. For forwarded messages, date the original message was sent in Unix time
+	ForwardDate           int                   `json:"forward_date,omitempty"`            // Optional. For forwarded messages, date the original message was sent in Unix time
 	ReplyToMessage        *Message              `json:"reply_to_message,omitempty"`        // Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
-	EditDate              int64                 `json:"edit_date,omitempty"`               // Optional. Date the message was last edited in Unix time
+	EditDate              int                   `json:"edit_date,omitempty"`               // Optional. Date the message was last edited in Unix time
 	MediaGroupID          string                `json:"media_group_id,omitempty"`          // Optional. The unique identifier of a media message group this message belongs to
 	AuthorSignature       string                `json:"author_signature,omitempty"`        // Optional. Signature of the post author for messages in channels
 	Text                  string                `json:"text,omitempty"`                    // Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters.

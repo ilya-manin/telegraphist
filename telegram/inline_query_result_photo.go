@@ -8,8 +8,8 @@ type InlineQueryResultPhoto struct {
 	ID                  string                `json:"id"`                              // Unique identifier for this result, 1-64 bytes
 	PhotoURL            string                `json:"photo_url"`                       // A valid URL of the photo. Photo must be in jpeg format. Photo size must not exceed 5MB
 	ThumbURL            string                `json:"thumb_url"`                       // URL of the thumbnail for the photo
-	PhotoWidth          int64                 `json:"photo_width,omitempty"`           // Optional. Width of the photo
-	PhotoHeight         int64                 `json:"photo_height,omitempty"`          // Optional. Height of the photo
+	PhotoWidth          int                   `json:"photo_width,omitempty"`           // Optional. Width of the photo
+	PhotoHeight         int                   `json:"photo_height,omitempty"`          // Optional. Height of the photo
 	Title               string                `json:"title,omitempty"`                 // Optional. Title for the result
 	Description         string                `json:"description,omitempty"`           // Optional. Short description of the result
 	Caption             string                `json:"caption,omitempty"`               // Optional. Caption of the photo to be sent, 0-1024 characters

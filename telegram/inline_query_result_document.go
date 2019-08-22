@@ -15,6 +15,6 @@ type InlineQueryResultDocument struct {
 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`          // Optional. Inline keyboard attached to the message
 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"` // Optional. Content of the message to be sent instead of the file
 	ThumbURL            string                `json:"thumb_url,omitempty"`             // Optional. URL of the thumbnail (jpeg only) for the file
-	ThumbWidth          int64                 `json:"thumb_width,omitempty"`           // Optional. Thumbnail width
-	ThumbHeight         int64                 `json:"thumb_height,omitempty"`          // Optional. Thumbnail height
+	ThumbWidth          int                   `json:"thumb_width,omitempty"`           // Optional. Thumbnail width
+	ThumbHeight         int                   `json:"thumb_height,omitempty"`          // Optional. Thumbnail height
 }

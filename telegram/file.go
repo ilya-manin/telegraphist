@@ -5,6 +5,6 @@ File represents a file ready to be downloaded. The file can be downloaded via th
 */
 type File struct {
 	FileID   string `json:"file_id"`             // Unique identifier for this file
-	FileSize int64  `json:"file_size,omitempty"` // Optional. File size, if known
+	FileSize int    `json:"file_size,omitempty"` // Optional. File size, if known
 	FilePath string `json:"file_path,omitempty"` // Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.
 }

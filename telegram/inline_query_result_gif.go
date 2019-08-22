@@ -7,9 +7,9 @@ type InlineQueryResultGif struct {
 	Type                string                `json:"type"`                            // Type of the result, must be gif
 	ID                  string                `json:"id"`                              // Unique identifier for this result, 1-64 bytes
 	GifURL              string                `json:"gif_url"`                         // A valid URL for the GIF file. File size must not exceed 1MB
-	GifWidth            int64                 `json:"gif_width,omitempty"`             // Optional. Width of the GIF
-	GifHeight           int64                 `json:"gif_height,omitempty"`            // Optional. Height of the GIF
-	GifDuration         int64                 `json:"gif_duration,omitempty"`          // Optional. Duration of the GIF
+	GifWidth            int                   `json:"gif_width,omitempty"`             // Optional. Width of the GIF
+	GifHeight           int                   `json:"gif_height,omitempty"`            // Optional. Height of the GIF
+	GifDuration         int                   `json:"gif_duration,omitempty"`          // Optional. Duration of the GIF
 	ThumbURL            string                `json:"thumb_url"`                       // URL of the static thumbnail for the result (jpeg or gif)
 	Title               string                `json:"title,omitempty"`                 // Optional. Title for the result
 	Caption             string                `json:"caption,omitempty"`               // Optional. Caption of the GIF file to be sent, 0-1024 characters

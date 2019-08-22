@@ -13,6 +13,6 @@ type InlineQueryResultArticle struct {
 	HideURL             bool                  `json:"hide_url,omitempty"`     // Optional. Pass True, if you don't want the URL to be shown in the message
 	Description         string                `json:"description,omitempty"`  // Optional. Short description of the result
 	ThumbURL            string                `json:"thumb_url,omitempty"`    // Optional. URL of the thumbnail for the result
-	ThumbWidth          int64                 `json:"thumb_width,omitempty"`  // Optional. Thumbnail width
-	ThumbHeight         int64                 `json:"thumb_height,omitempty"` // Optional. Thumbnail height
+	ThumbWidth          int                   `json:"thumb_width,omitempty"`  // Optional. Thumbnail width
+	ThumbHeight         int                   `json:"thumb_height,omitempty"` // Optional. Thumbnail height
 }

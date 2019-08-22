@@ -6,7 +6,7 @@ ChatMember contains information about one member of a chat.
 type ChatMember struct {
 	User                  *User  `json:"user"`                                // Information about the user
 	Status                string `json:"status"`                              // The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
-	UntilDate             int64  `json:"until_date,omitempty"`                // Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
+	UntilDate             int    `json:"until_date,omitempty"`                // Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
 	CanBeEdited           bool   `json:"can_be_edited,omitempty"`             // Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user
 	CanPostMessages       bool   `json:"can_post_messages,omitempty"`         // Optional. Administrators only. True, if the administrator can post in the channel; channels only
 	CanEditMessages       bool   `json:"can_edit_messages,omitempty"`         // Optional. Administrators only. True, if the administrator can edit messages of other users and can pin messages; channels only

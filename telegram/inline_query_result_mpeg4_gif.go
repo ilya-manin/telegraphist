@@ -7,9 +7,9 @@ type InlineQueryResultMpeg4Gif struct {
 	Type                string                `json:"type"`                            // Type of the result, must be mpeg4_gif
 	ID                  string                `json:"id"`                              // Unique identifier for this result, 1-64 bytes
 	Mpeg4URL            string                `json:"mpeg4_url"`                       // A valid URL for the MP4 file. File size must not exceed 1MB
-	Mpeg4Width          int64                 `json:"mpeg4_width,omitempty"`           // Optional. Video width
-	Mpeg4Height         int64                 `json:"mpeg4_height,omitempty"`          // Optional. Video height
-	Mpeg4Duration       int64                 `json:"mpeg4_duration,omitempty"`        // Optional. Video duration
+	Mpeg4Width          int                   `json:"mpeg4_width,omitempty"`           // Optional. Video width
+	Mpeg4Height         int                   `json:"mpeg4_height,omitempty"`          // Optional. Video height
+	Mpeg4Duration       int                   `json:"mpeg4_duration,omitempty"`        // Optional. Video duration
 	ThumbURL            string                `json:"thumb_url"`                       // URL of the static thumbnail (jpeg or gif) for the result
 	Title               string                `json:"title,omitempty"`                 // Optional. Title for the result
 	Caption             string                `json:"caption,omitempty"`               // Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters

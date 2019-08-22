@@ -10,7 +10,7 @@ type InlineQueryResultVoice struct {
 	Title               string                `json:"title"`                           // Recording title
 	Caption             string                `json:"caption,omitempty"`               // Optional. Caption, 0-1024 characters
 	ParseMode           string                `json:"parse_mode,omitempty"`            // Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
-	VoiceDuration       int64                 `json:"voice_duration,omitempty"`        // Optional. Recording duration in seconds
+	VoiceDuration       int                   `json:"voice_duration,omitempty"`        // Optional. Recording duration in seconds
 	ReplyMarkup         *InlineKeyboardMarkup `json:"reply_markup,omitempty"`          // Optional. Inline keyboard attached to the message
 	InputMessageContent *InputMessageContent  `json:"input_message_content,omitempty"` // Optional. Content of the message to be sent instead of the voice recording
 }
