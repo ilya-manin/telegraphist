@@ -16,17 +16,17 @@ type SendPhotoParams struct {
 /*
 Use this method to send photos. On success, the sent Message is returned.
 */
-func (c *Client) SendPhoto(params *SendPhotoParams) (*Message, error) {
+func (c *Client) SendPhoto(params *SendPhotoParams) (Message, error) {
 	var err error
 	var result Message
 	files := make(files)
 
 	err = handleFileToUpload(&params.Photo, &files)
 	if err != nil {
-		return &result, err
+		return result, err
 	}
 
 	err = c.performRequest("sendPhoto", params, &files, &result)
 
-	return &result, err
+	return result, err
 }
