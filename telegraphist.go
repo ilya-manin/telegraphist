@@ -10,22 +10,25 @@ import (
 const (
 	// DefaultBaseURL is endpoint URL to Telegram Bot API
 	DefaultBaseURL string = "https://api.telegram.org/bot"
+	// DefaultPort is port for serving the webhook
+	DefaultPort int = 443
 	// DefaultTimeout is period of time that will be allowed to wait a response
-	DefaultTimeout time.Duration = 10 * time.Second
+	DefaultTimeout time.Duration = 5 * time.Second
 )
 
-// Config represents settings of API client
-type Config struct {
+// ClientConfig represents settings of API client
+type ClientConfig struct {
 	BaseURL  string
 	BotToken string
 	Timeout  time.Duration
 }
 
-// New creates a new instance of API client with Config
-func New(config *Config) (*telegram.Client, error) {
+// NewClient creates a new instance of API client with ClientConfig
+func NewClient(config *ClientConfig) (*telegram.Client, error) {
 	if config.BaseURL == "" {
 		config.BaseURL = DefaultBaseURL
 	}
+
 	if config.Timeout == 0 {
 		config.Timeout = DefaultTimeout
 	}

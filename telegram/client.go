@@ -17,7 +17,7 @@ type Client struct {
 func (c *Client) urlFor(apiMethod string) (string, error) {
 	var err error
 
-	if len(apiMethod) == 0 {
+	if apiMethod == "" {
 		return "", fmt.Errorf("apiMethod should not be empty")
 	}
 
@@ -71,11 +71,11 @@ func (c *Client) performRequest(apiMethod string, params interface{}, filesToUpl
 func NewClient(baseURL string, botToken string, httpClient *http.Client) (*Client, error) {
 	var err error
 
-	if len(baseURL) == 0 {
+	if baseURL == "" {
 		return nil, fmt.Errorf("baseURL should not be empty")
 	}
 
-	if len(botToken) == 0 {
+	if botToken == "" {
 		return nil, fmt.Errorf("botToken should not be empty")
 	}
 

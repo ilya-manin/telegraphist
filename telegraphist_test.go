@@ -9,9 +9,9 @@ import (
 	"github.com/xamut/telegraphist/telegram"
 )
 
-func TestNew(t *testing.T) {
+func TestNewClient(t *testing.T) {
 	type args struct {
-		config *Config
+		config *ClientConfig
 	}
 	type test struct {
 		name    string
@@ -22,11 +22,11 @@ func TestNew(t *testing.T) {
 
 	tests := make([]test, 0)
 
-	c1, _ := telegram.NewClient("https://example.com", "foo", &http.Client{Timeout: 10 * time.Second})
+	c1, _ := telegram.NewClient("https://example.com", "foo", &http.Client{Timeout: 5 * time.Second})
 	tests = append(tests, test{
 		name: "Configured with baseUrl",
 		args: args{
-			config: &Config{
+			config: &ClientConfig{
 				BotToken: "foo",
 				BaseURL:  "https://example.com",
 			},
@@ -39,7 +39,7 @@ func TestNew(t *testing.T) {
 	tests = append(tests, test{
 		name: "Configured with timeout",
 		args: args{
-			config: &Config{
+			config: &ClientConfig{
 				BotToken: "bar",
 				Timeout:  100 * time.Minute,
 			},
@@ -48,11 +48,11 @@ func TestNew(t *testing.T) {
 		wantErr: false,
 	})
 
-	c3, _ := telegram.NewClient("https://api.telegram.org/bot", "baz", &http.Client{Timeout: 10 * time.Second})
+	c3, _ := telegram.NewClient("https://api.telegram.org/bot", "baz", &http.Client{Timeout: 5 * time.Second})
 	tests = append(tests, test{
-		name: "Configured with timeout",
+		name: "Configured without timeout",
 		args: args{
-			config: &Config{
+			config: &ClientConfig{
 				BotToken: "baz",
 			},
 		},
@@ -62,13 +62,13 @@ func TestNew(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := New(tt.args.config)
+			got, err := NewClient(tt.args.config)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("New() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("NewClient() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("New() = %v, want %v", got, tt.want)
+				t.Errorf("NewClient() = %v, want %v", got, tt.want)
 			}
 		})
 	}
