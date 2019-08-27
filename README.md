@@ -1,13 +1,22 @@
 # Telegraphist
+[![GoDoc Telegraphist](https://godoc.org/github.com/xamut/telegraphist?status.svg)](https://godoc.org/github.com/xamut/telegraphist)
 [![CI status](https://github.com/xamut/telegraphist/workflows/CI/badge.svg)](https://github.com/xamut/telegraphist/actions)
 
 Bindings for Telegram Bot API on Go. [API v4.4 (29 July 2019)](https://core.telegram.org/bots/api#july-29-2019) is supported.
 All methods and types represent their alter ego from Telegram Bot API so you would expect what you see in the official documentation.
-And you don't need to study new API to use this library.
+And you don't need to study the new API to use this library.
 
 ## Documentation
 
 * Official Telegram Bot API [documentation](https://core.telegram.org/bots/api)
+* [telegraphist](https://godoc.org/github.com/xamut/telegraphist)
+* [telegraphist/telegram](https://godoc.org/github.com/xamut/telegraphist/telegram)
+
+## Installation
+
+```bash
+go get -u github.com/xamut/telegraphist
+```
 
 ## Usage
 
@@ -23,7 +32,7 @@ import (
 	Telegram "github.com/xamut/telegraphist/telegram"
 )
 
-func printResp(resp []byte, err error) {
+func printResp(resp interface{}, err error) {
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -32,8 +41,8 @@ func printResp(resp []byte, err error) {
 }
 
 func main() {
-	telegraphist, err = Telegraphist.NewClient(&Telegraphist.ClientConfig{
-		BotToken: "<YOUR_BOT_TOKEN>",
+	telegraphist, err := Telegraphist.NewClient(&Telegraphist.ClientConfig{
+		BotToken: "YOUR_BOT_TOKEN",
 	})
 
 	if err != nil {
@@ -41,20 +50,21 @@ func main() {
 	}
 
 	printResp(telegraphist.GetMe()) // Simple method to obtain basic bot info
-	                                // https://core.telegram.org/bots/api#getme
-	                                // Returns an User struct
+					// https://core.telegram.org/bots/api#getme
+					// Returns an User struct
 
+	chatID := int64(<YOUR_CHAT_ID>)
 	printResp(telegraphist.SendMessage(&Telegram.SendMessageParams{ // Send a text message to a chat
-		ChatID:  int64(<CHAT_ID>), // https://core.telegram.org/bots/api#sendmessage
-		Message: "Hello there!",   // Returns a Message struct
-	})) //
+		ChatID: chatID,  				        // https://core.telegram.org/bots/api#sendmessage
+		Text:   "Hello there!", 				// Returns a Message struct
+	}))
 
-	photo, _ := os.Open("<PATH_TO_LOCAL_PHOTO>")                //
+	photo, _ := os.Open("<PATH_TO_PHOTO>")
 	printResp(telegraphist.SendPhoto(&Telegram.SendPhotoParams{ // Send a photo to a chat
-		ChatID:  int64(<CHAT_ID>),    // https://core.telegram.org/bots/api#sendphoto
-		Photo:   photo,               // Returns a Message struct
-		Caption: "Just a nice photo", //
-	})) //
+		ChatID:  chatID,              			    // https://core.telegram.org/bots/api#sendphoto
+		Photo:   photo,					    // Returns a Message struct
+		Caption: "Just a nice photo",
+	}))
 }
 ```
 
@@ -77,7 +87,7 @@ openssl req -newkey rsa:2048 \
   -days 3650 \
   -out cert.pem \
   -keyout key.pem \
-  -subj "/O=Organization/CN=app.X.X.X.X.nip.io""
+  -subj "/O=Organization/CN=app.X.X.X.X.nip.io"
 ```
 
 * Run server
@@ -88,11 +98,25 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/url"
 	"os"
+	"path"
 
 	Telegraphist "github.com/xamut/telegraphist"
 	Telegram "github.com/xamut/telegraphist/telegram"
 )
+
+func combineURL(host string, parts ...string) string {
+	baseURL, err := url.Parse(host)
+	if err != nil {
+		log.Fatal(err)
+	}
+	parts = append([]string{baseURL.Path}, parts...)
+	baseURL.Path = path.Join(parts...)
+
+	return baseURL.String()
+}
 
 func main() {
 	telegraphist, err := Telegraphist.NewClient(&Telegraphist.ClientConfig{
@@ -100,27 +124,27 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 
 	host := "https://app.X.X.X.X.nip.io" // For example: "https://example.com"
 	webhookPath := "<YOUR_WEBHOOK_PATH>" // For example: "/telegram_webhook"
 
-	cert, _ := os.Open("<PATH_TO_CERT.PEM>")
-	ok, err = telegraphist.SetWebhook(&Telegram.SetWebhookParams{
-		URL:         host + webhookPath,
+	cert, _ := os.Open("./cert.pem")
+	ok, err := telegraphist.SetWebhook(&Telegram.SetWebhookParams{
+		URL:         combineURL(host, webhookPath),
 		Certificate: cert,
 	})
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 
 	if !ok {
-		fmt.Println("Something went wrong and the webhook wasn't set up")
+		log.Println("Something went wrong and the webhook wasn't set up")
 	}
 
-	handlers := map[string]func(update telegram.Update) error{
+	handlers := map[string]func(update Telegram.Update) error{
 		// "message":              func(update Telegram.Update) error {},
 		// "edited_message":       func(update Telegram.Update) error {},
 		// "channel_post":         func(update Telegram.Update) error {},
@@ -144,7 +168,7 @@ func main() {
 	}, &handlers)
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 }
 ```
