@@ -1,8 +1,11 @@
 # Telegraphist
 [![GoDoc Telegraphist](https://godoc.org/github.com/xamut/telegraphist?status.svg)](https://godoc.org/github.com/xamut/telegraphist)
 [![CI status](https://github.com/xamut/telegraphist/workflows/CI/badge.svg)](https://github.com/xamut/telegraphist/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/xamut/telegraphist)](https://goreportcard.com/report/github.com/xamut/telegraphist)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/xamut/telegraphist)
+[![GitHub](https://img.shields.io/github/license/xamut/telegraphist)](https://opensource.org/licenses/MIT)
 
-Bindings for Telegram Bot API on Go. [API v4.4 (29 July 2019)](https://core.telegram.org/bots/api#july-29-2019) is supported.
+Telegram Bot API on Go. [API v4.4 (29 July 2019)](https://core.telegram.org/bots/api#july-29-2019) is supported.
 All methods and types represent their alter ego from Telegram Bot API so you would expect what you see in the official documentation.
 And you don't need to study the new API to use this library.
 
